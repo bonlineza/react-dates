@@ -142,6 +142,18 @@ export default {
         color_active: core.grayLighter,
         color_hover: core.grayLighter,
       },
+
+      before_today: {
+        backgroundColor: core.white,
+        backgroundColor_active: core.white,
+        backgroundColor_hover: core.white,
+        borderColor: core.borderLight,
+        borderColor_active: core.borderLight,
+        borderColor_hover: core.borderLight,
+        color: core.grayLighter,
+        color_active: core.grayLighter,
+        color_hover: core.grayLighter,
+      },
     },
 
     spacing: {

@@ -79,6 +79,7 @@ const propTypes = forbidExtraProps({
   dayAriaLabelFormat: PropTypes.string,
 
   isRTL: PropTypes.bool,
+  showBeforeTodayDifferently: PropTypes.bool,
 });
 
 const defaultProps = {
@@ -599,6 +600,7 @@ export default class DayPickerSingleDateController extends React.Component {
       verticalHeight,
       noBorder,
       transitionDuration,
+      showBeforeTodayDifferently,
     } = this.props;
 
     const { currentMonth, visibleDays } = this.state;
@@ -607,6 +609,7 @@ export default class DayPickerSingleDateController extends React.Component {
       <DayPicker
         orientation={orientation}
         enableOutsideDays={enableOutsideDays}
+        showBeforeTodayDifferently={showBeforeTodayDifferently}
         modifiers={visibleDays}
         numberOfMonths={numberOfMonths}
         onDayClick={this.onDayClick}

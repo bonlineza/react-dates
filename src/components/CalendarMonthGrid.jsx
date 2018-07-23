@@ -31,6 +31,7 @@ import {
 const propTypes = forbidExtraProps({
   ...withStylesPropTypes,
   enableOutsideDays: PropTypes.bool,
+  showBeforeTodayDifferently: PropTypes.bool,
   firstVisibleMonthIndex: PropTypes.number,
   initialMonth: momentPropTypes.momentObj,
   isAnimating: PropTypes.bool,
@@ -244,6 +245,7 @@ class CalendarMonthGrid extends React.Component {
       phrases,
       dayAriaLabelFormat,
       transitionDuration,
+      showBeforeTodayDifferently,
     } = this.props;
 
     const { months } = this.state;
@@ -306,6 +308,7 @@ class CalendarMonthGrid extends React.Component {
                 month={month}
                 isVisible={isVisible}
                 enableOutsideDays={enableOutsideDays}
+                showBeforeTodayDifferently={showBeforeTodayDifferently}
                 modifiers={modifiers[monthString]}
                 monthFormat={monthFormat}
                 orientation={orientation}

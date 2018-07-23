@@ -96,6 +96,7 @@ const defaultProps = {
   renderCalendarDay: undefined,
   renderDayContents: null,
   enableOutsideDays: false,
+  showBeforeTodayDifferently: false,
   isDayBlocked: () => false,
   isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => {},
@@ -362,6 +363,7 @@ class SingleDatePicker extends React.Component {
       daySize,
       isRTL,
       isOutsideRange,
+      showBeforeTodayDifferently,
       isDayBlocked,
       isDayHighlighted,
       weekDayFormat,
@@ -432,6 +434,7 @@ class SingleDatePicker extends React.Component {
           daySize={daySize}
           isRTL={isRTL}
           isOutsideRange={isOutsideRange}
+          showBeforeTodayDifferently={showBeforeTodayDifferently}
           isDayBlocked={isDayBlocked}
           isDayHighlighted={isDayHighlighted}
           firstDayOfWeek={firstDayOfWeek}

@@ -90,5 +90,8 @@ storiesOf('SDP - Input Props', module)
       initialDate={moment().add(3, 'days')}
       showClearDate
       small
+      showBeforeTodayDifferently
+      enableOutsideDays
+      isOutsideRange={(): boolean => false}
     />
   ));

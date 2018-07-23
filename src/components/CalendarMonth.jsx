@@ -35,6 +35,7 @@ const propTypes = forbidExtraProps({
   isVisible: PropTypes.bool,
   enableOutsideDays: PropTypes.bool,
   modifiers: PropTypes.object,
+  showBeforeTodayDifferently: PropTypes.bool,
   orientation: ScrollableOrientationShape,
   daySize: nonNegativeInteger,
   onDayClick: PropTypes.func,
@@ -160,6 +161,7 @@ class CalendarMonth extends React.Component {
       styles,
       phrases,
       dayAriaLabelFormat,
+      showBeforeTodayDifferently,
     } = this.props;
 
     const { weeks } = this.state;
@@ -199,6 +201,7 @@ class CalendarMonth extends React.Component {
                   day,
                   daySize,
                   isOutsideDay: !day || day.month() !== month.month(),
+                  showBeforeTodayDifferently,
                   tabIndex: isVisible && isSameDay(day, focusedDate) ? 0 : -1,
                   isFocused,
                   onDayMouseEnter,
