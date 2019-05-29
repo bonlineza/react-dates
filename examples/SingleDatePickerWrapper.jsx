@@ -66,6 +66,7 @@ const defaultProps = {
   renderCalendarDay: undefined,
   renderDayContents: null,
   enableOutsideDays: false,
+  showBeforeTodayDifferently: false,
   isDayBlocked: () => false,
   isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => {},

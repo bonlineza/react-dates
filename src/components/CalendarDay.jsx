@@ -11,6 +11,7 @@ import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 import getPhrase from '../utils/getPhrase';
 
 import { BLOCKED_MODIFIER, DAY_SIZE } from '../constants';
+import isBeforeDay from '../utils/isBeforeDay';
 
 const propTypes = forbidExtraProps({
   ...withStylesPropTypes,
@@ -18,6 +19,7 @@ const propTypes = forbidExtraProps({
   daySize: nonNegativeInteger,
   isOutsideDay: PropTypes.bool,
   modifiers: PropTypes.instanceOf(Set),
+  showBeforeTodayDifferently: PropTypes.bool,
   isFocused: PropTypes.bool,
   tabIndex: PropTypes.oneOf([0, -1]),
   onDayClick: PropTypes.func,
@@ -34,6 +36,7 @@ const defaultProps = {
   day: moment(),
   daySize: DAY_SIZE,
   isOutsideDay: false,
+  showBeforeTodayDifferently: false,
   modifiers: new Set(),
   isFocused: false,
   tabIndex: -1,
@@ -48,9 +51,9 @@ const defaultProps = {
 };
 
 class CalendarDay extends React.Component {
-  constructor(...args) {
-    super(...args);
-
+  constructor(props) {
+    super(props);
+    this.isBeforeToday = isBeforeDay(props.day, moment());
     this.setButtonRef = this.setButtonRef.bind(this);
   }
 
@@ -65,6 +68,7 @@ class CalendarDay extends React.Component {
         this.buttonRef.focus();
       }
     }
+    this.isBeforeToday = isBeforeDay(prevProps.day, moment());
   }
 
   onDayClick(day, e) {
@@ -103,6 +107,7 @@ class CalendarDay extends React.Component {
       ariaLabelFormat,
       daySize,
       isOutsideDay,
+      showBeforeTodayDifferently,
       modifiers,
       renderDayContents,
       tabIndex,
@@ -163,6 +168,7 @@ class CalendarDay extends React.Component {
           modifiers.has('selected-end') && styles.CalendarDay__selected_end,
           selected && styles.CalendarDay__selected,
           isOutsideRange && styles.CalendarDay__blocked_out_of_range,
+          showBeforeTodayDifferently && this.isBeforeToday && styles.CalendarDay__before_today,
           daySizeStyles,
         )}
         role="button" // eslint-disable-line jsx-a11y/no-noninteractive-element-to-interactive-role
@@ -343,6 +349,24 @@ export default withStyles(({ reactDates: { color, font } }) => ({
       border: `1px solid ${color.blocked_out_of_range.borderColor}`,
       color: color.blocked_out_of_range.color_active,
     },
+  },
+
+  CalendarDay__before_today: {
+    background: color.before_today.backgroundColor,
+    border: `1px solid ${color.before_today.borderColor}`,
+    color: color.before_today.color,
+
+    ':hover': {
+      background: color.core.borderLight,
+      border: `1px double ${color.core.borderLight}`,
+      color: 'inherit',
+    },
+
+    // ':active': {
+    //   background: color.before_today.backgroundColor_active,
+    //   border: `1px solid ${color.blocked_out_of_range.borderColor}`,
+    //   color: color.before_today.color_active,
+    // },
   },
 
   CalendarDay__selected_start: {},

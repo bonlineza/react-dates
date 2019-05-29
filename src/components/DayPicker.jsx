@@ -44,6 +44,7 @@ const propTypes = forbidExtraProps({
 
   // calendar presentation props
   enableOutsideDays: PropTypes.bool,
+  showBeforeTodayDifferently: PropTypes.bool,
   numberOfMonths: PropTypes.number,
   orientation: ScrollableOrientationShape,
   withPortal: PropTypes.bool,
@@ -673,6 +674,7 @@ class DayPicker extends React.Component {
 
     const {
       enableOutsideDays,
+      showBeforeTodayDifferently,
       numberOfMonths,
       orientation,
       modifiers,
@@ -797,6 +799,7 @@ class DayPicker extends React.Component {
                 setCalendarMonthHeights={this.setCalendarMonthHeights}
                 transformValue={transformValue}
                 enableOutsideDays={enableOutsideDays}
+                showBeforeTodayDifferently={showBeforeTodayDifferently}
                 firstVisibleMonthIndex={firstVisibleMonthIndex}
                 initialMonth={currentMonth}
                 isAnimating={isCalendarMonthGridAnimating}
